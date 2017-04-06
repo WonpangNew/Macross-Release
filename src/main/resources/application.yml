@@ -1,0 +1,12 @@
+spring.profiles.active: local
+
+spring:
+    profiles: online
+#ftp下载接口
+ftp.download: 10.10.10.10
+
+#ftp上传接口
+ftp.upload: 10.10.10.10
+
+#临时中转目录
+local.directory.download: /home/work/release/download
