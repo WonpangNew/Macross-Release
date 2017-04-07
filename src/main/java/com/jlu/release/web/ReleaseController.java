@@ -1,6 +1,8 @@
 package com.jlu.release.web;
 
 import com.jlu.release.bean.ReleaseParamsBean;
+import com.jlu.release.service.IReleaseService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,6 +16,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/release")
 public class ReleaseController {
 
+    @Autowired
+    private IReleaseService releaseService;
+
     @RequestMapping("/releaseByGet")
     @ResponseBody
     public String releaseByGet() {
@@ -23,6 +28,6 @@ public class ReleaseController {
     @RequestMapping(value = "/releaseByPost", method = RequestMethod.POST)
     @ResponseBody
     public String releaseByPost(@RequestParam("releaseParams") ReleaseParamsBean releaseParams) {
-        return "release";
+        return releaseService.doRelease(releaseParams);
     }
 }

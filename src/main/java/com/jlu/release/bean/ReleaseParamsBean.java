@@ -56,4 +56,12 @@ public class ReleaseParamsBean {
     public void setProductPath(String productPath) {
         this.productPath = productPath;
     }
+
+    public String getLocalCatalog() {
+        return username + "_" + module + "_" + version;
+    }
+
+    public String getUploadCatalog() {
+        return username + "/" + module + "/" + version.replaceAll("\\.", "-");
+    }
 }
