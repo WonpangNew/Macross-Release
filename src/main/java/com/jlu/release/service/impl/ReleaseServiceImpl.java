@@ -10,12 +10,14 @@ import com.jlu.release.service.IReleaseService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
 /**
  * Created by niuwanpeng on 17/4/6.
  */
+@Service
 public class ReleaseServiceImpl implements IReleaseService{
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ReleaseServiceImpl.class);

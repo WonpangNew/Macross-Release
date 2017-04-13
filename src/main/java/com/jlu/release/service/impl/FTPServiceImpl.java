@@ -10,6 +10,7 @@ import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.io.IOException;
@@ -20,6 +21,7 @@ import java.util.Map;
 /**
  * Created by niuwanpeng on 17/4/6.
  */
+@Service
 public class FTPServiceImpl implements IFTPService{
 
     private static final Logger LOGGER = LoggerFactory.getLogger(FTPServiceImpl.class);
