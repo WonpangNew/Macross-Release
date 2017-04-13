@@ -51,7 +51,7 @@ public class ProductFileServiceImpl implements IProductFileService {
         String uploadCatalog = releaseParams.getUploadCatalog();
         String localFilePath = LOCAL_CATALOG + releaseParams.getLocalCatalog() + "/" + releaseParams.getProductPath();
         File localFile = new File(localFilePath);
-        String result = ftpService.uploadProduct(uploadCatalog, localFile);
+        String result = ftpService.uploadProduct(uploadCatalog, releaseParams.getProductPath(), localFile);
         return result;
     }
 

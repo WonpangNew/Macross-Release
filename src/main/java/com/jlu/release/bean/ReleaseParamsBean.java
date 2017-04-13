@@ -64,4 +64,15 @@ public class ReleaseParamsBean {
     public String getUploadCatalog() {
         return username + "/" + module + "/" + version.replaceAll("\\.", "-");
     }
+
+    @Override
+    public String toString() {
+        return "ReleaseParamsBean{" +
+                "id=" + id +
+                ", module='" + module + '\'' +
+                ", version='" + version + '\'' +
+                ", username='" + username + '\'' +
+                ", productPath='" + productPath + '\'' +
+                '}';
+    }
 }

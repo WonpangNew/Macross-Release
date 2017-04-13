@@ -12,10 +12,11 @@ public interface IFTPService {
     /**
      * 上传产出
      * @param uploadPath [username]/[module]/[1-1-1-1]
+     * @param filename 文件名
      * @param localFile 本地文件，也是待上传的文件
      * @return
      */
-    String uploadProduct(String uploadPath, File localFile);
+    String uploadProduct(String uploadPath, String filename, File localFile);
 
     /**
      * 下载产出

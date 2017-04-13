@@ -1,8 +1,11 @@
 package com.jlu.release.service.impl;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.jlu.release.bean.ReleaseParamsBean;
 import com.jlu.release.service.IFTPService;
 import com.jlu.release.utils.HttpClientUtils;
+import org.apache.commons.collections.map.HashedMap;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,7 +13,6 @@ import org.springframework.beans.factory.annotation.Value;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
@@ -21,6 +23,8 @@ import java.util.Map;
 public class FTPServiceImpl implements IFTPService{
 
     private static final Logger LOGGER = LoggerFactory.getLogger(FTPServiceImpl.class);
+
+    private static Gson GSON = new Gson();
 
     @Value("${ftp.download}")
     private String FTP_DOWNLOAD_API;
@@ -34,11 +38,18 @@ public class FTPServiceImpl implements IFTPService{
     /**
      * 上传产出
      * @param uploadPath [username]/[module]/[1-1-1-1]/[filename]
+     * @param filename
      * @param localFile
      * @return
      */
-    public String uploadProduct(String uploadPath, File localFile) {
-        return "";
+    public String uploadProduct(String uploadPath, String filename, File localFile) {
+        String url = FTP_UPLOAD_API;
+        Map<String, Object> params = new HashedMap();
+        params.put("remoteDir", uploadPath);
+        params.put("remoteFileName", filename);
+        params.put("file", localFile);
+        String result = HttpClientUtils.postUploadFile(url, params);
+        return result;
     }
 
     /**
@@ -55,6 +66,9 @@ public class FTPServiceImpl implements IFTPService{
         String downloadHttpUrl = HttpClientUtils.get(url, params);
         URL httpurl = null;
         try {
+            if (downloadHttpUrl == null || downloadHttpUrl.isEmpty()) {
+                return "FAIL";
+            }
             httpurl = new URL(downloadHttpUrl);
             File file = new File(LOCAL_DOC + releaseParams.getLocalCatalog() +
                     "/" +releaseParams.getProductPath());
@@ -62,6 +76,6 @@ public class FTPServiceImpl implements IFTPService{
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return "";
+        return "SUCC";
     }
 }

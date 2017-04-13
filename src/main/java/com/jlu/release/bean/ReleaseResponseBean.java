@@ -11,9 +11,13 @@ public class ReleaseResponseBean {
 
     private String module;
 
+    private String username;
+
     private String releaseProductPath;
 
     private ReleaseStatus releaseStatus;
+
+    private String errMsg;
 
     public int getId() {
         return id;
@@ -45,5 +49,21 @@ public class ReleaseResponseBean {
 
     public void setReleaseStatus(ReleaseStatus releaseStatus) {
         this.releaseStatus = releaseStatus;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getErrMsg() {
+        return errMsg;
+    }
+
+    public void setErrMsg(String errMsg) {
+        this.errMsg = errMsg;
     }
 }
