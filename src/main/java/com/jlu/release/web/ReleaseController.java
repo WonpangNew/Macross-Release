@@ -27,7 +27,7 @@ public class ReleaseController {
 
     @RequestMapping(value = "/releaseByPost", method = RequestMethod.POST)
     @ResponseBody
-    public Strng releaseByPost(@RequestParam("releaseParams") ReleaseParamsBean releaseParams) {
+    public String releaseByPost(@RequestParam("releaseParams") ReleaseParamsBean releaseParams) {
         return releaseService.doRelease(releaseParams);
     }
 }
