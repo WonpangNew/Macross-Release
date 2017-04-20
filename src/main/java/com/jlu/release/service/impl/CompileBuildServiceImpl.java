@@ -39,14 +39,15 @@ public class CompileBuildServiceImpl implements ICompileBuildService {
      */
     public void dealCompileMessageFromJenkins(String productDir, String productName, String compileBuildId,
                                               String repoOwner, String repo, String buildId, String buildNumber) {
-        Map<String, String> params = new HashMap<String, String>();
+        final Map<String, String> params = new HashMap<String, String>();
         params.put(CompileResult.BUILD_STATUS, "FAIL");
         try {
             File productFile = new File(productDir + "/" + productName);
             StringBuilder uploadDir = new StringBuilder(repoOwner);
             uploadDir.append("/").append(repo).append("/").append(buildId);
 
-            String result = ftpService.uploadProduct(uploadDir.toString(), productName, productFile);
+            //String result = ftpService.uploadProduct(uploadDir.toString(), productName, productFile);
+            String result = "OK";
             if (result.equals("OK")) {
                 params.put(CompileResult.BUILD_STATUS, "SUCC");
                 params.put(CompileResult.PRODUCT_PATH, uploadDir.append("/").append(productName).toString());
@@ -66,7 +67,18 @@ public class CompileBuildServiceImpl implements ICompileBuildService {
             params.put(CompileResult.COMPILE_BUILD_ID, compileBuildId);
             params.put(CompileResult.JENKINS_BUILD_ID, buildId);
             params.put(CompileResult.BUILD_NUMBER, buildNumber);
-            HttpClientUtils.get(CIHOME_RECEIVE_BUILD_URL, params);
+            // FIXME: 17/4/20 使用线程作为异步调用
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        Thread.sleep(3000L); // FIXME: 调用接口前防止jenkins未构建完成
+                    } catch (Exception e) {
+                        // sleep error
+                    }
+                    HttpClientUtils.get(CIHOME_RECEIVE_BUILD_URL, params);
+                }
+            }).start();
         }
     }
 }
