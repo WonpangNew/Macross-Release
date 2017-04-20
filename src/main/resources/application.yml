@@ -25,3 +25,5 @@ ftp.upload: 10.10.10.10
 
 #临时中转目录
 local.directory.download: /home/work/release/download/
+
+cihome.receive.compile: http://10.10.10.10//compileBuild/end

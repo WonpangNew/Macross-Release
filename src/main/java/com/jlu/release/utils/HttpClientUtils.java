@@ -66,6 +66,7 @@ public class HttpClientUtils {
                 if (entity != null) {
                     returnContent = EntityUtils.toString(entity, HTTP.UTF_8);
                 }
+                LOGGER.info("Success to get URL: " + url + " with response: " + response.getStatusLine().getReasonPhrase());
             }else {
                 LOGGER.error("Failed to get URL: " + url + " with response: " + response.getStatusLine().getReasonPhrase());
             }
