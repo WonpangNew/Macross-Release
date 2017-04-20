@@ -2,6 +2,7 @@ package com.jlu.release.bean;
 
 /**
  * Created by niuwanpeng on 17/4/20.
+ *
  */
 public class CompileResult {
 
