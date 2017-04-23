@@ -1,5 +1,7 @@
 package com.jlu.release.bean;
 
+import org.apache.commons.lang.StringUtils;
+
 /**
  * Created by niuwanpeng on 17/4/6.
  *
@@ -50,7 +52,7 @@ public class ReleaseParamsBean {
     }
 
     public String getProductPath() {
-        return productPath;
+        return StringUtils.substringBeforeLast(this.productPath, "/");
     }
 
     public void setProductPath(String productPath) {
@@ -63,6 +65,10 @@ public class ReleaseParamsBean {
 
     public String getUploadCatalog() {
         return username + "/" + module + "/" + version.replaceAll("\\.", "-");
+    }
+
+    public String getFileName() {
+        return StringUtils.substringAfterLast(this.productPath, "/");
     }
 
     @Override

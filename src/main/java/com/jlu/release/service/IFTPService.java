@@ -25,4 +25,13 @@ public interface IFTPService {
      * @return
      */
     String downloadProduct(ReleaseParamsBean releaseParams, File localFile);
+
+    /**
+     * 复制编译产出到release产品库下
+     * @param sourceDir
+     * @param targetDir
+     * @param sourceFileName
+     * @return
+     */
+    String copyResourceToRelease(String sourceDir, String targetDir, String sourceFileName);
 }

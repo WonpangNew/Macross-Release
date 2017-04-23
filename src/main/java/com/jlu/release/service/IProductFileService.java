@@ -38,4 +38,11 @@ public interface IProductFileService {
      * @return
      */
     String createFileCatalog(ReleaseParamsBean releaseParams);
+
+    /**
+     * 复制编译产出到release产品库下
+     * @param releaseParams
+     * @return
+     */
+    String copyResourceToRelease(ReleaseParamsBean releaseParams);
 }

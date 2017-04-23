@@ -102,4 +102,20 @@ public class ProductFileServiceImpl implements IProductFileService {
             return "创建临时产出目录失败，请稍后重试";
         }
     }
+
+    /**
+     * 复制编译产出到release产品库下
+     * @param releaseParams
+     * @return
+     */
+    @Override
+    public String copyResourceToRelease(ReleaseParamsBean releaseParams) {
+        String sourceDir = releaseParams.getProductPath();
+        String targetDir = releaseParams.getUploadCatalog();
+        String sourceFileName = releaseParams.getFileName();
+        LOGGER.info("Starting copy file:{}", sourceFileName);
+        String result = ftpService.copyResourceToRelease(sourceDir, targetDir, sourceFileName);
+        LOGGER.info("Ending copy file:{}", sourceFileName);
+        return result;
+    }
 }

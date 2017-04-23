@@ -42,7 +42,7 @@ public class ReleaseServiceImpl implements IReleaseService{
         LOGGER.info("Starting download Resource, releaseParams:[]", releaseParams.getId());
         productFileService.downloadResource(releaseParams);
         LOGGER.info("Starting upload Resource, releaseParams:[]", releaseParams.getId());
-        String uploadResult = productFileService.uploadResource(releaseParams);
+        String uploadResult = productFileService.copyResourceToRelease(releaseParams);
         if (uploadResult != null) {
             Map<String, String> returnContent = GSON.fromJson(uploadResult, new TypeToken<Map<String, String>>() {}.getType());
             if (returnContent.get("STATUS") != null && returnContent.get("STATUS").equals("SUCCESS")) {

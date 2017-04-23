@@ -1,6 +1,7 @@
 package com.jlu.release.web;
 
 import com.jlu.release.service.ICompileBuildService;
+import com.jlu.release.service.IFTPService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.io.File;
 
 /**
  * Created by niuwanpeng on 17/4/18.
@@ -21,6 +24,9 @@ public class CompileApiController {
 
     @Autowired
     private ICompileBuildService compileBuildService;
+
+    @Autowired
+    private IFTPService ftpService;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CompileApiController.class);
 
@@ -35,5 +41,14 @@ public class CompileApiController {
                                    @RequestParam("buildNumber") String buildNumber) {
         compileBuildService.dealCompileMessageFromJenkins(productDir, productName, compileBuildId,
                 repoOwner, repo, buildId, buildNumber);
+    }
+
+    @RequestMapping(value = "/test", method = RequestMethod.GET)
+    @ResponseBody
+    public void testUpload() {
+        String remoteDir = "cihome/test";
+        String remoteFileName = "ss.txt";
+        File file = new File("/Users/niuwanpeng/worksapce/ss.txt");
+        ftpService.uploadProduct(remoteDir, remoteFileName, file);
     }
 }

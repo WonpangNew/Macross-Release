@@ -4,13 +4,18 @@ spring:
     profiles: local
 
 #ftp下载接口
-ftp.download: 10.10.10.10
+ftp.download: http://localhost:8999/ftp/api/download
 
 #ftp上传接口
-ftp.upload: 10.10.10.10
+ftp.upload: http://localhost:8999/ftp/api/upload
+
+#ftp转移文件接口
+ftp.copy: http://localhost:8999/ftp/api/copy
 
 #临时中转目录
 local.directory.download: /home/work/release/download/
+
+cihome.receive.compile: http://localhost:8080/compileBuild/end
 
 ---
 
@@ -18,10 +23,13 @@ spring:
     profiles: online
 
 #ftp下载接口
-ftp.download: 10.10.10.10
+ftp.download: http://localhost:8999/ftp/api/download
 
 #ftp上传接口
-ftp.upload: 10.10.10.10
+ftp.upload: http://localhost:8999/ftp/api/upload
+
+#ftp转移文件接口
+ftp.copy: http://localhost:8999/ftp/api/copy
 
 #临时中转目录
 local.directory.download: /home/work/release/download/

@@ -46,8 +46,7 @@ public class CompileBuildServiceImpl implements ICompileBuildService {
             StringBuilder uploadDir = new StringBuilder(repoOwner);
             uploadDir.append("/").append(repo).append("/").append(buildId);
 
-            //String result = ftpService.uploadProduct(uploadDir.toString(), productName, productFile);
-            String result = "OK";
+            String result = ftpService.uploadProduct(uploadDir.toString(), productName, productFile);
             if (result.equals("OK")) {
                 params.put(CompileResult.BUILD_STATUS, "SUCC");
                 params.put(CompileResult.PRODUCT_PATH, uploadDir.append("/").append(productName).toString());

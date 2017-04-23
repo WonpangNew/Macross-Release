@@ -37,6 +37,9 @@ public class FTPServiceImpl implements IFTPService{
     @Value("${local.directory.download}")
     private String LOCAL_DOC;
 
+    @Value("${ftp.copy}")
+    private String FTP_COPY_API;
+
     /**
      * 上传产出
      * @param uploadPath [username]/[module]/[1-1-1-1]/[filename]
@@ -79,5 +82,22 @@ public class FTPServiceImpl implements IFTPService{
             e.printStackTrace();
         }
         return "SUCC";
+    }
+
+    /**
+     * 复制编译产出到release产品库下
+     * @param sourceDir
+     * @param targetDir
+     * @param sourceFileName
+     * @return
+     */
+    public String copyResourceToRelease(String sourceDir, String targetDir, String sourceFileName) {
+        String url = FTP_COPY_API;
+        Map<String, String> params = new HashMap<String, String>();
+        params.put("sourceDir", sourceDir);
+        params.put("targetDir", targetDir);
+        params.put("sourceFileName", sourceFileName);
+        String result = HttpClientUtils.get(url, params);
+        return result;
     }
 }
