@@ -53,8 +53,7 @@ public class CompileBuildServiceImpl implements ICompileBuildService {
             uploadDir.append("/").append(repo).append("/").append(buildId);
 
             String result = ftpService.uploadProduct(uploadDir.toString(), productName, productFile);
-            UploadResult uploadResult = GSON.fromJson(result, new TypeToken<List<UploadResult>>(){}.getType());
-            if (uploadResult.getSTATUS().equals("SUCCESS")) {
+            if (result.equals("OK")) {
                 params.put(CompileResult.BUILD_STATUS, "SUCC");
                 params.put(CompileResult.PRODUCT_PATH, uploadDir.append("/").append(productName).toString());
                 params.put(CompileResult.ERR_MSG, "Compiling successful!");
