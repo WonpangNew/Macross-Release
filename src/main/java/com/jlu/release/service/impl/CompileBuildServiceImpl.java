@@ -1,6 +1,9 @@
 package com.jlu.release.service.impl;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.jlu.release.bean.CompileResult;
+import com.jlu.release.bean.UploadResult;
 import com.jlu.release.service.ICompileBuildService;
 import com.jlu.release.service.IFTPService;
 import com.jlu.release.utils.HttpClientUtils;
@@ -12,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -27,6 +31,8 @@ public class CompileBuildServiceImpl implements ICompileBuildService {
     private String CIHOME_RECEIVE_BUILD_URL;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CompileBuildServiceImpl.class);
+
+    private static final Gson GSON = new Gson();
 
     /**
      * 将编译产出上传到ftp服务器，并回调cihome接口通知编译完毕
@@ -47,7 +53,8 @@ public class CompileBuildServiceImpl implements ICompileBuildService {
             uploadDir.append("/").append(repo).append("/").append(buildId);
 
             String result = ftpService.uploadProduct(uploadDir.toString(), productName, productFile);
-            if (result.equals("OK")) {
+            UploadResult uploadResult = GSON.fromJson(result, new TypeToken<List<UploadResult>>(){}.getType());
+            if (uploadResult.getSTATUS().equals("SUCCESS")) {
                 params.put(CompileResult.BUILD_STATUS, "SUCC");
                 params.put(CompileResult.PRODUCT_PATH, uploadDir.append("/").append(productName).toString());
                 params.put(CompileResult.ERR_MSG, "Compiling successful!");
