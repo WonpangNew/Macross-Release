@@ -17,10 +17,6 @@ local.directory.download: /home/work/release/download/
 
 cihome.receive.compile: http://localhost:8080/compileBuild/end
 
-multipart.maxFileSize: 100Mb
-
-multipart.maxRequestSize: 100Mb
-
 ---
 
 spring:
@@ -39,7 +35,3 @@ ftp.copy: http://localhost:8999/ftp/api/copy
 local.directory.download: /home/work/release/download/
 
 cihome.receive.compile: http://localhost:8080/compileBuild/end
-
-multipart.maxFileSize: 100Mb
-
-multipart.maxRequestSize: 100Mb
