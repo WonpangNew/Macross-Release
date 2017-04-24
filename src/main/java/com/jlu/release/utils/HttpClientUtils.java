@@ -113,7 +113,7 @@ public class HttpClientUtils {
             if(response.getStatusLine().getStatusCode() == HttpStatus.SC_OK){
                 HttpEntity entityR = response.getEntity();
                 if (entityR != null) {
-                    returnContent = EntityUtils.toString(entity, HTTP.UTF_8);
+                    returnContent = EntityUtils.toString(entity);
                 }
             }else {
                 LOGGER.error("Failed to get URL: " + url + " with response: " + response.getStatusLine().getReasonPhrase());
