@@ -1,9 +1,7 @@
 package com.jlu.release.service.impl;
 
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.jlu.release.bean.CompileResult;
-import com.jlu.release.bean.UploadResult;
 import com.jlu.release.service.ICompileBuildService;
 import com.jlu.release.service.IFTPService;
 import com.jlu.release.utils.HttpClientUtils;
@@ -15,7 +13,6 @@ import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**

@@ -9,7 +9,7 @@ import org.apache.commons.lang.StringUtils;
  */
 public class ReleaseParamsBean {
 
-    private int id;
+    private int releaseId;
 
     private String module;
 
@@ -17,14 +17,26 @@ public class ReleaseParamsBean {
 
     private String username;
 
-    private String productPath;
+    private String compileProductPath;
 
-    public int getId() {
-        return id;
+    public ReleaseParamsBean() {
+
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public ReleaseParamsBean(int releaseId, String module, String version, String username, String compileProductPath) {
+        this.releaseId = releaseId;
+        this.module = module;
+        this.version = version;
+        this.username = username;
+        this.compileProductPath = compileProductPath;
+    }
+
+    public int getReleaseId() {
+        return this.releaseId;
+    }
+
+    public void setReleaseId(int id) {
+        this.releaseId = id;
     }
 
     public String getModule() {
@@ -52,11 +64,11 @@ public class ReleaseParamsBean {
     }
 
     public String getProductPath() {
-        return StringUtils.substringBeforeLast(this.productPath, "/");
+        return StringUtils.substringBeforeLast(this.compileProductPath, "/");
     }
 
     public void setProductPath(String productPath) {
-        this.productPath = productPath;
+        this.compileProductPath = productPath;
     }
 
     public String getLocalCatalog() {
@@ -68,17 +80,17 @@ public class ReleaseParamsBean {
     }
 
     public String getFileName() {
-        return StringUtils.substringAfterLast(this.productPath, "/");
+        return StringUtils.substringAfterLast(this.compileProductPath, "/");
     }
 
     @Override
     public String toString() {
         return "ReleaseParamsBean{" +
-                "id=" + id +
+                "ReleaseId=" + releaseId +
                 ", module='" + module + '\'' +
                 ", version='" + version + '\'' +
                 ", username='" + username + '\'' +
-                ", productPath='" + productPath + '\'' +
+                ", compileProductPath='" + compileProductPath + '\'' +
                 '}';
     }
 }

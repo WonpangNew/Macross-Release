@@ -7,7 +7,7 @@ package com.jlu.release.bean;
  */
 public class ReleaseResponseBean {
 
-    private int id;
+    private int releaseId;
 
     private String module;
 
@@ -19,12 +19,12 @@ public class ReleaseResponseBean {
 
     private String errMsg;
 
-    public int getId() {
-        return id;
+    public int getReleaseId() {
+        return releaseId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setReleaseId(int id) {
+        this.releaseId = id;
     }
 
     public String getModule() {

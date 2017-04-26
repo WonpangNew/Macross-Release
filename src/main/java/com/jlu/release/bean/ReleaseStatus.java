@@ -4,7 +4,7 @@ package com.jlu.release.bean;
  * Created by niuwanpeng on 17/4/6.
  */
 public enum ReleaseStatus {
-    SUCCESS("SUCCESS"), FAIL("FAIL");
+    SUCCESS("SUCCESS"), FAIL("FAIL"), RUNNING("RUNNING");
 
     private String value;
 

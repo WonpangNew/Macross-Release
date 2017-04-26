@@ -15,7 +15,11 @@ ftp.copy: http://localhost:8999/ftp/api/copy
 #临时中转目录
 local.directory.download: /home/work/release/download/
 
+#回调，通知cihome编译结束
 cihome.receive.compile: http://localhost:8080/compileBuild/end
+
+#回调，通知cihome发布结束
+cihome.callback.release: http://localhost:8080/release/callBackFromRelease
 
 ---
 
@@ -34,4 +38,8 @@ ftp.copy: http://localhost:8999/ftp/api/copy
 #临时中转目录
 local.directory.download: /home/work/release/download/
 
+#回调，通知cihome编译结束
 cihome.receive.compile: http://localhost:8080/compileBuild/end
+
+#回调，通知cihome发布结束
+cihome.callback.release: http://localhost:8080/release/callBackFromRelease
