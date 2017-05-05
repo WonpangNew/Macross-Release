@@ -14,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -64,12 +63,10 @@ public class ReleaseServiceImpl implements IReleaseService{
                         LOGGER.info("release successful! releaseParams:{}", releaseParamsBean.getReleaseId());
                     } else {
                         releaseResponse.setReleaseStatus(ReleaseStatus.FAIL);
-                        releaseResponse.setErrMsg(returnContent.get("ERR_MSG"));
                         LOGGER.error("release fail!releaseParams:{}", releaseParamsBean.toString());
                     }
                 } else {
                     releaseResponse.setReleaseStatus(ReleaseStatus.FAIL);
-                    releaseResponse.setErrMsg("请求失败！");
                     LOGGER.error("Request ftp api fail! releaseParams:{}", releaseParamsBean.toString());
                 }
                 String json = GSON.toJson(releaseResponse);

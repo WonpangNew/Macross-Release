@@ -52,7 +52,10 @@ public class CompileBuildServiceImpl implements ICompileBuildService {
             String result = ftpService.uploadProduct(uploadDir.toString(), productName, productFile);
             if (result.equals("OK")) {
                 params.put(CompileResult.BUILD_STATUS, "SUCC");
-                params.put(CompileResult.PRODUCT_PATH, uploadDir.append("/").append(productName).toString());
+                Map<String, String> productPath = new HashMap<String, String>();
+                productPath.put("remoteDir", uploadDir.toString());
+                productPath.put("remoteFileName", productName);
+                params.put(CompileResult.PRODUCT_PATH, GSON.toJson(productPath));
                 params.put(CompileResult.ERR_MSG, "Compiling successful!");
                 LOGGER.info("Product upload successful! compileBuildId:{}, params:{}", compileBuildId, params.toString());
             } else {
